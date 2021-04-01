@@ -3,7 +3,7 @@
 <head>
 	<title>Labas Spring web</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-	<script src="GrafikasX.js"></script>
+	<script src="GrafikasStulp.js"></script>
 	<script>
 	
 		$( document ).ready ( function() {
@@ -34,16 +34,12 @@
 		  	
 		  	$( '#brezti_grafika' ).click( function() {
 		  	
-		  		skaicius = $( '#skaicius1' ).val();
-		  		
-		  		/* taskai_visi.push ( taskas );
+		  		// skaicius = $( '#skaicius1' ).val();
 		  	
-				grafikas = new GrafikasX ( 'kreives_grafikas', taskai_visi, 'x', 'z' );
+				grafikas = new GrafikasStulp ( 'skaiciu_grafikas', skaiciai_visi, ['sk1', 'sk2', 'sk3', 'sk4'] );
 				
-				taskai_visi.pop();
-				
-				grafikas.braizom ( taskai_visi, 'x', 'z', "blue" );
-				
+				grafikas.braizom ( skaiciai_visi, ['sk1', 'sk2', 'sk3', 'sk4'], ["blue", "green", "red", "brown"] );
+				/*
 				atkarpa = [];
 				
 				atkarpa.push ( taskas );
@@ -110,7 +106,7 @@
 			<input type="button" name="brezti_grafika" id="brezti_grafika" class="frm_button" value="pavaizduoti">
 		</form>
 	</div>
-	<canvas id="kreives_grafikas"  width="900" height="500">
+	<canvas id="skaiciu_grafikas"  width="900" height="500">
 	</canvas>	
 </body>
 </html> 
