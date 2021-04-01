@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Labas Spring web</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+	<script src="GrafikasX.js"></script>
+	<script>
+	
+		$( document ).ready ( function() {
+		
+		
+			var skaiciai_visi;
+	
+			$.ajax({
+		 		 url: '/skaiciu-reiksmes'
+		 
+			}).done( function( data ) {
+				
+				// alert ( "gauti duomenys: " + data );
+				
+				for ( i = 0; i < data.length; i++ ) {
+				
+					if ( data [ i ] != null ) {
+				
+						console.log ( data [ i ].sk1 + " " + data [ i ].sk2 + " " + data [ i ].sk3 + " " + data [ i ].sk4 );
+					}
+				}
+				
+				
+				console.log ( JSON.stringify ( data ) );
+				
+				skaiciai_visi = data;
+		  	});	
+		  	
+		  	$( '#brezti_grafika' ).click( function() {
+		  	
+		  		skaicius = $( '#skaicius1' ).val();
+		  		
+		  		/* taskai_visi.push ( taskas );
+		  	
+				grafikas = new GrafikasX ( 'kreives_grafikas', taskai_visi, 'x', 'z' );
+				
+				taskai_visi.pop();
+				
+				grafikas.braizom ( taskai_visi, 'x', 'z', "blue" );
+				
+				atkarpa = [];
+				
+				atkarpa.push ( taskas );
+				atkarpa.push ( taskai_visi [ 0 ] );
+				
+				grafikas.braizom ( atkarpa, 'x', 'z', "red" );		  	
+		  	*/
+		  	});
+		});
+	
+	</script>
+	<style>
+		table {
+			border-collapse: collapse;
+			}
+		th, td {
+				padding: 3px 4px;
+				border: 1px solid black;
+			}	
+		#forma {
+			 width: 30%;
+			 margin: 10px auto;
+		}
+		label {
+			display: center;
+		}
+		input, label {
+			width: 20%;
+			margin: 10px auto;
+		}
+		.didesni{
+			color: red;
+		}
+		.mazesni{
+			color: green;
+		}	
+	</style>
+</head>
+<body>
+	Labas Spring web
+	
+	<table>
+		<tr>
+			<th>
+				Skaiciu sekos
+			</th>
+			<th>
+				Vidurkiai
+			</th>
+		</tr>
+		<tr th:each="skaicius : ${visi_skaiciai}" th:class="${skaicius.vidurkis()} > ${skaicius1}  ? 'didesni' : 'mazesni'">
+			<td th:text="${skaicius.teisingaSeka()}"></td>
+			<td th:text="${skaicius.vidurkis()}"></td>
+		</tr>
+		
+	</table>
+	
+	<div id="forma">
+		<h3>Skaičių įvedimas</h3>
+		<form method="POST" action="">
+			<label for="skaicius1">Skaicius1</label>
+			<input name="skaicius1" id="skaicius1" type="text">
+			<input type="submit" name="palyginti_skirtuma" class="frm_button" value="palyginti">
+			<input type="button" name="brezti_grafika" id="brezti_grafika" class="frm_button" value="pavaizduoti">
+		</form>
+	</div>
+	<canvas id="kreives_grafikas"  width="900" height="500">
+	</canvas>	
+</body>
+</html> 
